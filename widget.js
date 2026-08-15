@@ -36,7 +36,21 @@
     + '.gog-foot input:focus{border-color:' + WINE + ';}'
     + '.gog-send{width:38px;height:38px;border-radius:50%;background:' + WINE + ';color:#fff;border:none;cursor:pointer;font-size:16px;flex-shrink:0;}'
     + '.gog-send:hover{background:' + WINE_D + ';}'
-    + '.gog-legal{font-size:10.5px;color:#8a8172;text-align:center;padding:0 12px 8px;background:#fff;}';
+    + '.gog-legal{font-size:10.5px;color:#8a8172;text-align:center;padding:0 12px 8px;background:#fff;}'
+    + '#gog-wa-btn{position:fixed;bottom:27px;right:96px;z-index:99997;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;border:0;cursor:pointer;box-shadow:0 7px 22px rgba(20,105,53,.28);display:grid;place-items:center;transition:transform .2s,box-shadow .2s;}'
+    + '#gog-wa-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 28px rgba(20,105,53,.35);}'
+    + '#gog-wa-btn svg{width:27px;height:27px;display:block;}'
+    + '#gog-wa-choice{position:fixed;right:24px;bottom:96px;z-index:99997;width:330px;max-width:calc(100vw - 32px);padding:22px;background:#fff;border:1px solid #e3e3e6;border-radius:12px;box-shadow:0 22px 58px rgba(23,25,34,.2);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;display:none;}'
+    + '#gog-wa-choice.open{display:block;animation:gogWaIn .2s ease-out;}'
+    + '@keyframes gogWaIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}'
+    + '.gog-wa-close{position:absolute;top:11px;right:12px;border:0;background:none;color:#7a7e88;font-size:19px;line-height:1;cursor:pointer;padding:5px;}'
+    + '#gog-wa-choice strong{display:block;padding-right:24px;color:#171922;font-size:17px;letter-spacing:-.02em;}'
+    + '#gog-wa-choice p{margin:8px 0 18px;color:#686d78;font-size:13px;line-height:1.55;}'
+    + '.gog-wa-actions{display:grid;gap:8px;}'
+    + '.gog-wa-actions button,.gog-wa-actions a{min-height:43px;display:flex;align-items:center;justify-content:center;border-radius:7px;padding:0 14px;font-size:12.5px;font-weight:750;text-decoration:none;cursor:pointer;}'
+    + '.gog-wa-ai{border:0;background:' + WINE + ';color:#fff;}.gog-wa-ai:hover{background:' + WINE_D + ';}'
+    + '.gog-wa-direct{border:1px solid #b9dfc5;background:#fff;color:#137333;}.gog-wa-direct:hover{background:#f1fbf4;}'
+    + '@media(max-width:480px){#gog-btn{right:18px;bottom:18px}#gog-wa-btn{right:88px;bottom:21px}#gog-wa-choice{right:16px;bottom:88px}}';
 
   var style = document.createElement('style');
   style.textContent = css;
@@ -58,6 +72,25 @@
     + '<div class="gog-foot"><input id="gog-input" type="text" placeholder="Escribe tu consulta…" autocomplete="off" /><button class="gog-send" id="gog-send" aria-label="Enviar">➤</button></div>'
     + '<div class="gog-legal">Orientación inicial · no sustituye asesoramiento jurídico · con la tecnología de Velai</div>';
   document.body.appendChild(box);
+
+  var waBtn = document.createElement('button');
+  waBtn.id = 'gog-wa-btn';
+  waBtn.type = 'button';
+  waBtn.setAttribute('aria-label', 'Contactar por WhatsApp');
+  waBtn.setAttribute('aria-expanded', 'false');
+  waBtn.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.42 3 4.03 8.36 4.03 14.95c0 2.3.66 4.54 1.91 6.47L4 28.5l7.27-1.91a12.06 12.06 0 0 0 4.76.97h.01c6.62 0 12.01-5.36 12.01-11.95C28.05 9.02 22.66 3 16.04 3Zm7.07 17.1c-.3.84-1.75 1.61-2.42 1.67-.62.06-1.39.09-2.24-.18-.52-.16-1.18-.38-2.03-.75-3.57-1.54-5.9-5.12-6.08-5.36-.18-.24-1.45-1.92-1.45-3.67 0-1.75.92-2.61 1.24-2.97.32-.36.7-.45.94-.45h.68c.22 0 .51-.08.8.61.3.72 1.01 2.46 1.1 2.64.09.18.15.39.03.63-.12.24-.18.39-.35.6-.18.21-.37.47-.53.63-.18.18-.36.37-.16.73.21.36.91 1.5 1.96 2.42 1.35 1.2 2.48 1.57 2.84 1.75.35.18.56.15.77-.09.21-.24.89-1.03 1.13-1.39.24-.36.48-.3.8-.18.33.12 2.07.97 2.42 1.15.36.18.59.27.68.42.09.15.09.86-.21 1.7Z"/></svg>';
+  document.body.appendChild(waBtn);
+
+  var waChoice = document.createElement('div');
+  waChoice.id = 'gog-wa-choice';
+  waChoice.setAttribute('role', 'dialog');
+  waChoice.setAttribute('aria-label', 'Elegir cómo recibir ayuda');
+  waChoice.innerHTML = ''
+    + '<button class="gog-wa-close" type="button" aria-label="Cerrar">×</button>'
+    + '<strong>¿Quieres que Faby te oriente primero?</strong>'
+    + '<p>Puede identificar tu trámite y ayudarte a llegar a WhatsApp con el caso más claro.</p>'
+    + '<div class="gog-wa-actions"><button class="gog-wa-ai" type="button">Sí, hablar con Faby</button><a class="gog-wa-direct" href="https://wa.me/34634167405" target="_blank" rel="noopener">No, ir directamente a WhatsApp</a></div>';
+  document.body.appendChild(waChoice);
 
   var msgsEl = box.querySelector('#gog-msgs');
   var input  = box.querySelector('#gog-input');
@@ -124,11 +157,31 @@
   }
 
   function toggle() {
+    waChoice.classList.remove('open');
+    waBtn.setAttribute('aria-expanded', 'false');
     var open = box.classList.toggle('open');
     if (open) { greet(); setTimeout(function () { input.focus(); }, 100); }
   }
 
   btn.addEventListener('click', toggle);
+  waBtn.addEventListener('click', function () {
+    var open = waChoice.classList.toggle('open');
+    waBtn.setAttribute('aria-expanded', String(open));
+    if (open && box.classList.contains('open')) box.classList.remove('open');
+  });
+  waChoice.querySelector('.gog-wa-close').addEventListener('click', function () {
+    waChoice.classList.remove('open');
+    waBtn.setAttribute('aria-expanded', 'false');
+  });
+  waChoice.querySelector('.gog-wa-ai').addEventListener('click', function () {
+    waChoice.classList.remove('open');
+    waBtn.setAttribute('aria-expanded', 'false');
+    if (!box.classList.contains('open')) toggle();
+  });
+  waChoice.querySelector('.gog-wa-direct').addEventListener('click', function () {
+    waChoice.classList.remove('open');
+    waBtn.setAttribute('aria-expanded', 'false');
+  });
   box.querySelector('.gog-x').addEventListener('click', toggle);
   box.querySelector('#gog-send').addEventListener('click', send);
   input.addEventListener('keydown', function (e) { if (e.key === 'Enter') send(); });

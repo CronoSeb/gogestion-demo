@@ -1,0 +1,12 @@
+name = "gogestion-bot"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "REEMPLAZA_CON_TU_KV_ID"
+
+# Secretos (configúralos, NO van en el código):
+#   npx wrangler secret put ANTHROPIC_API_KEY
+#   npx wrangler secret put TELEGRAM_TOKEN
+# Variables opcionales: TELEGRAM_CHAT_ID

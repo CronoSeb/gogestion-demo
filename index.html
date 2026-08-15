@@ -122,17 +122,61 @@
   footer a{color:#ead9c9;}
   .disc{background:var(--paper);color:var(--muted);font-size:12px;text-align:center;padding:14px 22px;border-top:1px solid var(--border);}
 </style>
+<style>
+  @font-face{font-family:"Plus Jakarta Sans";src:url("fonts/plus-jakarta-sans.woff2") format("woff2");font-style:normal;font-weight:200 800;font-display:swap}
+  :root{--paper:#fff;--cream2:#f6f6f7;--surface:#fff;--ink:#171922;--muted:#666b78;--border:#e5e5e8;--border2:#e5e5e8;--wine:#8b1430;--wine-d:#731027;--wine-soft:#f8eef1;--gold:#8b1430;--shadow:0 16px 45px rgba(23,25,34,.08);--serif:"Plus Jakarta Sans",Inter,Avenir,"Segoe UI",sans-serif;--sans:"Plus Jakarta Sans",Inter,Avenir,"Segoe UI",sans-serif}
+  html{scroll-behavior:smooth;scroll-padding-top:78px}
+  body{font-size:16px;line-height:1.65;background:#fff}
+  .wrap{max-width:1180px;padding:0 24px}
+  h1,h2,h3{font-weight:700;letter-spacing:-.035em}
+  .eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.13em}.eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
+
+  header.nav{background:rgba(255,255,255,.95);border-color:var(--border);backdrop-filter:blur(14px)}
+  .nav .wrap{height:78px}.logo{display:inline-flex;align-items:center}.logo img{width:154px;height:auto}
+  .nav nav{gap:28px}.nav nav a{color:#474b56;font-size:13.5px;font-weight:600}.nav .cta{min-height:44px;display:inline-flex;align-items:center;padding:0 19px;border-radius:8px;color:#fff}
+
+  .hero{padding:58px 0 42px}.hero .grid{grid-template-columns:minmax(0,.92fr) minmax(440px,1.08fr);gap:62px}
+  .hero h1{max-width:700px;margin:18px 0 22px;font-size:clamp(40px,5.2vw,66px);line-height:1.08}
+  .hero p.lead{font-size:18px}.btn{padding:13px 21px;border-radius:8px;font-size:14px;transition:transform .2s,background .2s,border-color .2s}.btn:hover{transform:translateY(-1px)}
+  .btn-s{background:#fff;border-color:#d4d5da}.btn-s:hover{border-color:var(--ink);color:var(--ink)}
+  .hero-proof{display:flex;align-items:center;gap:10px;margin-top:28px;color:#555b67;font-size:12.5px;font-weight:650}.hero-proof strong{color:var(--wine);letter-spacing:2px}
+  .video-shell{position:relative;min-height:610px;overflow:hidden;border-radius:4px;background:#d9d9dc;box-shadow:var(--shadow)}
+  .video-shell::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(17,19,26,.62));pointer-events:none}
+  .video-shell video{display:block;width:100%;height:610px;object-fit:cover}
+  .video-caption{position:absolute;z-index:2;right:26px;bottom:24px;left:26px;display:flex;align-items:flex-end;justify-content:space-between;gap:18px;color:#fff}.video-caption small{display:block;margin-bottom:3px;font-size:10px;font-weight:750;letter-spacing:.13em;text-transform:uppercase;opacity:.78}.video-caption b{font-size:18px;letter-spacing:-.02em}.sound-toggle{display:grid;width:44px;height:44px;flex:none;place-items:center;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:rgba(20,22,29,.4);color:#fff;cursor:pointer}
+
+  .trust{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#fff;color:var(--ink)}.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0 24px}.trust .t{padding:27px 28px;border-left:1px solid var(--border);text-align:left}.trust .t:first-child{padding-left:0;border-left:0}.trust .t b{font-family:var(--sans);font-size:19px}.trust .t span{color:var(--muted);font-size:11.5px}
+
+  section{padding:100px 0}.sec-head{max-width:720px;margin-bottom:42px}.sec-head h2{margin:12px 0;font-size:clamp(30px,4vw,46px)}.sec-head p{font-size:17px}
+  #servicios{background:#f6f6f7}.services{grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid #dedfe3;border-left:1px solid #dedfe3}.svc,.svc.alt{min-height:245px;padding:30px;border:0;border-right:1px solid #dedfe3;border-bottom:1px solid #dedfe3;border-radius:0;background:#fff;box-shadow:none;transition:transform .2s,box-shadow .2s}.svc:hover{z-index:2;transform:translateY(-3px);box-shadow:0 16px 36px rgba(23,25,34,.08)}.svc h3{font-size:17px}.svc p{font-size:13.5px}.svc .price{font-family:var(--sans);font-size:18px}.note{line-height:1.65}
+
+  .process{background:#fff}.process-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:90px}.process-intro{position:sticky;top:116px;align-self:start}.process-intro h2{margin:12px 0 16px;font-size:clamp(30px,4vw,46px)}.process-intro p{color:var(--muted);font-size:17px}.steps{border-top:1px solid var(--border)}.step{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:30px 0;border-bottom:1px solid var(--border)}.step>span{color:var(--wine);font-size:12px;font-weight:800}.step h3{font-family:var(--sans);margin:0 0 8px;font-size:17px}.step p{max-width:610px;margin:0;color:var(--muted);font-size:14px}
+
+  #asistente{padding:0 0 100px}.ia{grid-template-columns:1.05fr .95fr;padding:58px;border-radius:0;background:#202431}.ia h2{font-size:clamp(28px,3.5vw,42px)}.ia p,.ia ul{color:#c9cbd3}.ia .eyebrow{color:#ef9daf!important}.ia .btn-w{border-radius:8px;color:var(--ink)}.chatmock{border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.25)}.chatmock .bot{background:#f6f6f7}.chatmock .me{background:var(--wine)}
+
+  #confianza{background:#f6f6f7}.why{gap:28px}.why .c{padding:30px 0 0;border:0;border-top:2px solid var(--ink);border-radius:0;background:transparent;box-shadow:none}.why .c .ic{display:none}.why .c::before{display:block;margin-bottom:34px;color:#9a9da6;font-size:12px;font-weight:800}.why .c:nth-child(1)::before{content:"01"}.why .c:nth-child(2)::before{content:"02"}.why .c:nth-child(3)::before{content:"03"}.why .c h3{font-size:17px}.why .c p{font-size:13.5px}.institution{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-top:58px;padding:28px 32px;border:1px solid #dedfe3;background:#fff}.institution img{width:105px;height:auto}.institution p{flex:1;margin:0;color:var(--muted);font-size:13px}.institution strong{color:var(--ink)}
+
+  #faq{background:#fff}details[style]{border-width:0 0 1px!important;border-radius:0!important;box-shadow:none!important}details[style] summary{padding:19px 0!important}details[style] p{font-size:13.5px!important}
+  .contact{background:var(--wine);color:#fff}.contact .sec-head{max-width:760px}.contact .sec-head .eyebrow{color:#f0aabb}.contact .sec-head h2{color:#fff}.contact .sec-head p{color:#f4dbe1}.contact .row .ic{display:none}.contact a{color:#fff}.contact .hero-card{border:1px solid rgba(255,255,255,.25);border-radius:0;background:rgba(255,255,255,.08);box-shadow:none}.contact .hero-card .muted{color:#f3dce1}.contact .btn-p{background:#fff;color:var(--wine)}
+
+  footer{padding:48px 0;background:#151720;color:#b8bbc4}footer strong img{width:150px;margin-bottom:18px}footer a{color:#e5e6e9}.disc{border:0;background:#0f1118;color:#8b8e98;font-size:10px;letter-spacing:.02em}
+  #ckb{border:1px solid #343743!important;border-radius:0!important;background:#1b1e28!important}
+
+  @media(max-width:900px){.hero .grid{grid-template-columns:1fr 1fr;gap:34px}.video-shell,.video-shell video{height:540px;min-height:540px}.nav nav a.hide{display:none}.trust .wrap{grid-template-columns:repeat(2,1fr)}.trust .t:nth-child(3){border-left:0}.trust .t:nth-child(n+3){border-top:1px solid var(--border)}.process-grid{gap:50px}.ia{padding:42px}}
+  @media(max-width:680px){.wrap{padding:0 16px}.nav .wrap{height:68px}.logo img{width:138px}.nav .cta{font-size:12px}.hero{padding-top:32px}.hero .grid{display:flex;flex-direction:column}.hero h1{font-size:clamp(38px,12vw,52px)}.hero p.lead{font-size:16px}.hero .btns .btn{width:100%;text-align:center}.video-shell{width:100%;height:520px;min-height:520px}.video-shell video{height:520px;min-height:520px}.trust .t{padding:20px 14px}.trust .t:nth-child(odd){padding-left:0}.trust .t b{font-size:16px}.services{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr;gap:28px}.process-intro{position:static}.step{grid-template-columns:42px 1fr;gap:12px}.ia{grid-template-columns:1fr;padding:38px 24px}.institution{align-items:flex-start;flex-direction:column}.contact .grid{grid-template-columns:1fr}.why{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+</style>
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="#top">GO<b>gestión</b></a>
+    <a class="logo" href="#top" aria-label="GOgestión, inicio"><img src="images/logo.png" alt="GOgestión"></a>
     <nav>
       <a class="hide" href="#servicios">Servicios</a>
+      <a class="hide" href="#proceso">Cómo trabajamos</a>
       <a class="hide" href="#asistente">Asistente</a>
-      <a class="hide" href="#confianza">Por qué GOgestión</a>
-      <a class="hide" href="#contacto">Contacto</a>
+      <a class="hide" href="https://gogestion.es/es/seguimiento" target="_blank" rel="noopener">Área de clientes</a>
       <a class="cta" href="#contacto">Reservar cita</a>
     </nav>
   </div>
@@ -150,15 +194,11 @@
           <a class="btn btn-p" href="#contacto">Reservar consulta (40&nbsp;€)</a>
           <a class="btn btn-s" href="#asistente">Preguntar al asistente</a>
         </div>
+        <div class="hero-proof"><strong>★★★★★</strong><span>5,0 · más de 145 reseñas de clientes</span></div>
       </div>
-      <div class="hero-card">
-        <h3>Precios claros, sin sorpresas</h3>
-        <p class="muted">Algunos de nuestros trámites más habituales:</p>
-        <div class="row"><span>Consulta inicial</span><b>40&nbsp;€</b></div>
-        <div class="row"><span>Arraigo (socioformativo / sociolaboral)</span><b>400&nbsp;€</b></div>
-        <div class="row"><span>Nacionalidad por residencia</span><b>500&nbsp;€</b></div>
-        <div class="row"><span>Reagrupación familiar</span><b>500&nbsp;€</b></div>
-        <div class="row"><span>Canje de permiso de conducir</span><b>230&nbsp;€</b></div>
+      <div class="video-shell">
+        <video id="brand-video" src="videos/gogestion_vi.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Conoce GOgestión"></video>
+        <div class="video-caption"><div><small>Conoce GOgestión</small><b>Experiencia real, trato profesional</b></div><button id="sound-toggle" class="sound-toggle" type="button" aria-label="Activar sonido" title="Activar sonido"><span class="sound-off"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="m22 9-6 6m0-6 6 6"/></svg></span><span class="sound-on" hidden><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12"/></svg></span></button></div>
       </div>
     </div>
   </section>
@@ -181,16 +221,25 @@
       </div>
       <div class="services">
         <div class="svc"><h3>Consulta inicial</h3><p>Revisamos tu situación y te orientamos sobre el trámite que te corresponde. Presencial o por videollamada.</p><div class="price">40&nbsp;€ <small>· deducible del trámite</small></div></div>
-        <div class="svc alt"><h3>Arraigo</h3><p>Socioformativo y sociolaboral. Te ayudamos a preparar y presentar el expediente.</p><div class="price">400&nbsp;€</div></div>
-        <div class="svc"><h3>Reagrupación familiar</h3><p>Reagrupa a tu familia cumpliendo los requisitos de vínculo, medios y vivienda.</p><div class="price">500&nbsp;€</div></div>
+        <div class="svc alt"><h3>Pack Arraigo</h3><p>Social, socioformativo, familiar, de segunda oportunidad o por razones humanitarias.</p><div class="price">450&nbsp;€ <small>· tasas incluidas</small></div></div>
+        <div class="svc"><h3>Residencia familiar de español</h3><p>Autorización para pareja, padres o hijos de ciudadanos españoles, desde España o desde origen.</p><div class="price">400&nbsp;€ <small>· tasas incluidas</small></div></div>
         <div class="svc"><h3>Nacionalidad por residencia</h3><p>Preparación y presentación del expediente de nacionalidad española.</p><div class="price">500&nbsp;€</div></div>
         <div class="svc alt"><h3>Canje de permiso de conducir</h3><p>Si tu país tiene convenio con España. Tasas incluidas.</p><div class="price">230&nbsp;€ <small>· tasas incluidas</small></div></div>
-        <div class="svc"><h3>Residencia de larga duración</h3><p>Tramitamos tu residencia de larga duración y revisamos periodos.</p><div class="price">200&nbsp;€</div></div>
-        <div class="svc alt"><h3>Modificaciones de residencia</h3><p>Desde arraigo, estudios o razones humanitarias.</p><div class="price">200&nbsp;€ <small>· + tasas</small></div></div>
-        <div class="svc"><h3>Homologación de títulos</h3><p>Bachiller (180&nbsp;€) y títulos universitarios (500&nbsp;€).</p><div class="price">Desde 180&nbsp;€</div></div>
-        <div class="svc alt"><h3>Estudios · prórroga</h3><p>Prórroga de estancia por estudios y trámites académicos.</p><div class="price">180&nbsp;€</div></div>
+        <div class="svc"><h3>Pack estancias por estudios</h3><p>Desde localizar el centro y reunir la documentación hasta obtener tu tarjeta de estudiante.</p><div class="price">550&nbsp;€ <small>· tasas incluidas</small></div></div>
       </div>
       <p class="note">¿No ves tu trámite (renovaciones, nómada digital, recursos, requerimientos…)? Lo atendemos también: escríbenos y, tras revisar tu caso, te indicamos honorarios y documentación exacta. Forma de pago habitual: 70&nbsp;% al iniciar y 30&nbsp;% al finalizar.</p>
+    </div>
+  </section>
+
+  <section id="proceso" class="process">
+    <div class="wrap process-grid">
+      <div class="process-intro"><span class="eyebrow">Cómo trabajamos</span><h2>Siempre sabes qué viene después</h2><p>Un proceso ordenado reduce incertidumbre, evita errores y te permite seguir tu expediente sin perseguir respuestas.</p></div>
+      <div class="steps">
+        <article class="step"><span>01</span><div><h3>Entendemos tu situación</h3><p>Revisamos tu caso, tus plazos y la documentación disponible. Si no conviene iniciar un trámite, también te lo decimos.</p></div></article>
+        <article class="step"><span>02</span><div><h3>Preparamos el expediente</h3><p>Recibes una lista clara de documentos. Revisamos cada pieza y presentamos el expediente ante la administración.</p></div></article>
+        <article class="step"><span>03</span><div><h3>Hacemos seguimiento</h3><p>Consultas el estado desde el Área de Clientes y el equipo te acompaña ante novedades o requerimientos.</p></div></article>
+        <article class="step"><span>04</span><div><h3>Te acompañamos hasta el cierre</h3><p>Te explicamos la resolución y los siguientes pasos para completar correctamente el proceso.</p></div></article>
+      </div>
     </div>
   </section>
 
@@ -209,12 +258,12 @@
           <p style="margin-top:18px"><a class="btn btn-w" href="#" onclick="if(document.getElementById('gog-btn')){document.getElementById('gog-btn').click();}return false;">Hablar con Faby →</a></p>
         </div>
         <div class="chatmock" aria-hidden="true">
-          <div class="b bot">¡Hola! Soy Faby 👋 ¿En qué trámite te puedo orientar?</div>
+          <div class="b bot">Hola, soy Faby. ¿En qué trámite te puedo orientar?</div>
           <div class="b me">Llevo 2 años en España, ¿qué puedo hacer?</div>
-          <div class="b bot">Por el tiempo que llevas podrías encajar en un arraigo. Cada caso es distinto 📌 ¿Qué nacionalidad tienes y cuál es tu situación ahora?</div>
+          <div class="b bot">Por el tiempo que llevas podrías encajar en un arraigo. Cada caso es distinto. ¿Qué nacionalidad tienes y cuál es tu situación ahora?</div>
         </div>
       </div>
-      <p style="text-align:center;margin-top:18px;font-size:14px;color:var(--muted)">⚡ Asistente con la tecnología de <a href="https://hirevai.com" target="_blank" rel="noopener" style="font-weight:700;color:var(--wine)">Velai</a> →</p>
+      <p style="text-align:center;margin-top:18px;font-size:12px;color:var(--muted)">Asistente con tecnología de <a href="https://hirevai.com" target="_blank" rel="noopener" style="font-weight:700;color:var(--wine)">Velai</a></p>
     </div>
   </section>
 
@@ -229,6 +278,7 @@
         <div class="c"><div class="ic">🤝</div><h3>Lo hemos vivido</h3><p>Entendemos por lo que pasas porque conocemos el proceso de cerca. Te acompañamos en cada paso.</p></div>
         <div class="c"><div class="ic">🔎</div><h3>Sin promesas vacías</h3><p>No garantizamos resultados imposibles. Revisamos tu caso y te decimos la verdad, con opciones reales.</p></div>
       </div>
+      <div class="institution"><img src="images/coga-sevilla.png" alt="Colegio Oficial de Gestores Administrativos de Sevilla"><p><strong>Miembro del Colegio Oficial de Gestores Administrativos de Sevilla.</strong><br>Una acreditación visible para reforzar la confianza desde el primer contacto.</p><a href="https://www.gestoressevilla.com" target="_blank" rel="noopener">Ver institución →</a></div>
     </div>
   </section>
 
@@ -293,7 +343,7 @@
 
 <footer>
   <div class="wrap">
-    <strong style="color:#fff;font-family:var(--serif);font-size:18px">GOgestión</strong> — Gestoría Administrativa · Extranjería, migración y nacionalidad · Sevilla<br>
+    <strong><img src="images/logo-white.png" alt="GOgestión"></strong>Gestoría Administrativa · Extranjería, migración y nacionalidad · Sevilla<br>
     Colegiado nº 1345 · Calle Niebla 23, Local B, 41011 Sevilla · <a href="tel:+34634167405">+34 634 167 405</a><br>
     <a href="/privacidad/">Política de Privacidad y Cookies</a>
   </div>
@@ -302,10 +352,12 @@
 
 <!-- Banner de cookies -->
 <div id="ckb" role="dialog" aria-label="Aviso de cookies" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:99997;max-width:720px;margin:0 auto;background:#1C2027;color:#f3ede4;border-radius:14px;padding:14px 16px;font:14px/1.55 system-ui,-apple-system,sans-serif;box-shadow:0 14px 44px rgba(0,0,0,.35);flex-wrap:wrap;gap:12px;align-items:center;">
-  <span style="flex:1 1 260px">Usamos cookies esenciales y de medición para mejorar la web. <a href="/privacidad/" style="color:#f0b088;text-decoration:underline">Más información</a>.</span>
+  <span style="flex:1 1 260px">Usamos almacenamiento esencial para recordar tus preferencias. <a href="/privacidad/" style="color:#f0b088;text-decoration:underline">Más información</a>.</span>
   <button id="ckbOk" style="background:#A6153A;color:#fff;border:0;border-radius:10px;padding:9px 18px;font:700 14px system-ui,sans-serif;cursor:pointer">Aceptar</button>
 </div>
 <script>(function(){try{if(localStorage.getItem('gog-cookies'))return;var b=document.getElementById('ckb');if(!b)return;b.style.display='flex';document.getElementById('ckbOk').addEventListener('click',function(){try{localStorage.setItem('gog-cookies','1');}catch(e){}b.style.display='none';});}catch(e){}})();</script>
+
+<script>(function(){var v=document.getElementById('brand-video'),b=document.getElementById('sound-toggle');if(!v||!b)return;b.addEventListener('click',function(){v.muted=!v.muted;b.querySelector('.sound-off').hidden=!v.muted;b.querySelector('.sound-on').hidden=v.muted;b.setAttribute('aria-label',v.muted?'Activar sonido':'Silenciar video');if(v.paused)v.play().catch(function(){})});})();</script>
 
 <!-- Asistente virtual (widget) -->
 <script>window.GOGESTION_WORKER_URL = 'https://gogestion-bot.botnexo-ia.workers.dev';</script>

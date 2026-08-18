@@ -255,7 +255,7 @@
             <li>Te da documentación orientativa y precios claros.</li>
             <li>Nunca inventa: si tu caso necesita estudio, te lo dice y lo revisa el equipo.</li>
           </ul>
-          <p style="margin-top:18px"><a class="btn btn-w" href="#" onclick="if(document.getElementById('gog-btn')){document.getElementById('gog-btn').click();}return false;">Hablar con Faby →</a></p>
+          <p style="margin-top:18px"><a class="btn btn-w" href="#" onclick="if(window.VaiChat){window.VaiChat.open();}return false;">Hablar con Faby →</a></p>
         </div>
         <div class="chatmock" aria-hidden="true">
           <div class="b bot">Hola, soy Faby. ¿En qué trámite te puedo orientar?</div>
@@ -332,7 +332,7 @@
           <div class="hero-card">
             <h3>¿Prefieres empezar por Faby?</h3>
             <p class="muted">Cuéntale tu situación y te orienta al instante, sin compromiso.</p>
-            <a class="btn btn-p" href="#" onclick="if(document.getElementById('gog-btn')){document.getElementById('gog-btn').click();}return false;">Hablar con Faby →</a>
+            <a class="btn btn-p" href="#" onclick="if(window.VaiChat){window.VaiChat.open();}return false;">Hablar con Faby →</a>
           </div>
         </div>
       </div>
@@ -360,7 +360,8 @@
 <script>(function(){var v=document.getElementById('brand-video'),b=document.getElementById('sound-toggle');if(!v||!b)return;b.addEventListener('click',function(){v.muted=!v.muted;b.querySelector('.sound-off').hidden=!v.muted;b.querySelector('.sound-on').hidden=v.muted;b.setAttribute('aria-label',v.muted?'Activar sonido':'Silenciar video');if(v.paused)v.play().catch(function(){})});})();</script>
 
 <!-- Asistente virtual (widget) -->
-<script>window.GOGESTION_WORKER_URL = 'https://gogestion-bot.botnexo-ia.workers.dev';</script>
-<script src="widget.js"></script>
+<!-- Asistente unificado Vai (Velai) — la marca de Faby (GOgestión) se sirve desde el panel. Reemplaza el widget.js propio. -->
+<script>window.VELAI_TENANT='gogestion';</script>
+<script src="https://hirevai.com/assets/vai-widget.js?v=7" defer></script>
 </body>
 </html>

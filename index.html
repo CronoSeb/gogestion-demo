@@ -170,6 +170,12 @@
   .wa-float:hover{transform:scale(1.06)}
   .wa-float svg{width:30px;height:30px;fill:#fff}
   @media(max-width:680px){.wa-float{width:52px;height:52px;left:16px;bottom:16px}}
+  /* Selector de idioma ES/EN/FR */
+  .lang-sel{display:inline-flex;gap:2px;border:1px solid var(--border);border-radius:999px;padding:2px}
+  .lang-sel button{background:transparent;border:0;cursor:pointer;font:600 12.5px var(--sans);color:var(--muted);padding:5px 9px;border-radius:999px;line-height:1}
+  .lang-sel button:hover{color:var(--wine)}
+  .lang-sel button.on{background:var(--wine);color:#fff}
+  @media(max-width:680px){.lang-sel{order:3}}
 </style>
 </head>
 <body>
@@ -183,6 +189,11 @@
       <a class="hide" href="#proceso">Cómo trabajamos</a>
       <a class="hide" href="#asistente">Asistente</a>
       <a class="hide" href="https://gogestion.es/es/seguimiento" target="_blank" rel="noopener">Área de clientes</a>
+      <div class="lang-sel" role="group" aria-label="Idioma / Language / Langue">
+        <button type="button" data-l="es" class="on">ES</button>
+        <button type="button" data-l="en">EN</button>
+        <button type="button" data-l="fr">FR</button>
+      </div>
       <a class="cta" href="#contacto">Reservar cita</a>
     </nav>
   </div>
@@ -441,6 +452,159 @@
 <a class="wa-float" href="https://wa.me/34634167405?text=Hola%2C%20vengo%20de%20la%20web%20de%20GOgesti%C3%B3n%20y%20quiero%20informaci%C3%B3n%20sobre%20un%20tr%C3%A1mite%20de%20extranjer%C3%ADa." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg>
 </a>
+
+<!-- i18n ES / EN / FR — traducción por nodos de texto (no altera la estructura) -->
+<script>
+(function(){
+  var T = {
+    "Sobre nosotros":["About us","À propos"],
+    "Servicios":["Services","Services"],
+    "Cómo trabajamos":["How we work","Comment nous travaillons"],
+    "Asistente":["Assistant","Assistant"],
+    "Área de clientes":["Client area","Espace client"],
+    "Reservar cita":["Book appointment","Prendre rendez-vous"],
+    "Gestoría de extranjería · Sevilla":["Immigration agency · Seville","Cabinet d'immigration · Séville"],
+    "Tu trámite de extranjería, en manos de quien lo ha vivido":["Your immigration procedure, in the hands of someone who's lived it","Vos démarches d'immigration, entre les mains de quelqu'un qui les a vécues"],
+    "Somos gestoría administrativa colegiada especializada en extranjería, migración y nacionalidad española. Te orientamos con claridad y gestionamos tu trámite de principio a fin.":["We are a chartered administrative agency specialised in immigration, migration and Spanish nationality. We guide you clearly and manage your procedure from start to finish.","Nous sommes un cabinet administratif agréé spécialisé en immigration, migration et nationalité espagnole. Nous vous orientons avec clarté et gérons votre démarche du début à la fin."],
+    "Reservar consulta (40 €)":["Book a consultation (40 €)","Réserver une consultation (40 €)"],
+    "Preguntar al asistente":["Ask the assistant","Demander à l'assistant"],
+    "5,0 · más de 145 reseñas de clientes":["5.0 · over 145 client reviews","5,0 · plus de 145 avis clients"],
+    "Colegiado":["Chartered","Agréé"],
+    "Nº 1345 · Colegio de Gestores de Sevilla":["Nº 1345 · Seville Assoc. of Administrative Agents","Nº 1345 · Ordre des gestionnaires de Séville"],
+    "+145 reseñas de clientes":["+145 client reviews","+145 avis clients"],
+    "expedientes tramitados":["cases processed","dossiers traités"],
+    "Presencial o online":["In person or online","En personne ou en ligne"],
+    "Sevilla y por videollamada":["Seville and by video call","Séville et par visioconférence"],
+    "No solo asesoramos. Entendemos tu camino porque lo hemos recorrido.":["We don't just advise. We understand your journey because we've walked it.","Nous ne faisons pas que conseiller. Nous comprenons votre parcours parce que nous l'avons vécu."],
+    "GOgestión nació de la experiencia real de migrar. Por eso no asesoramos desde la teoría: asesoramos desde la experiencia.":["GOgestión was born from the real experience of migrating. That's why we don't advise from theory: we advise from experience.","GOgestión est né de l'expérience réelle de la migration. C'est pourquoi nous ne conseillons pas depuis la théorie : nous conseillons depuis l'expérience."],
+    "Director · Gestor Administrativo Colegiado nº 1345":["Director · Chartered Administrative Agent nº 1345","Directeur · Gestionnaire administratif agréé nº 1345"],
+    "Gerson llegó a España como inmigrante y vivió en primera persona cada etapa de los trámites que hoy gestiona: asilo, residencia, homologación de títulos, canje del carnet de conducir.":["Gerson arrived in Spain as an immigrant and personally lived every stage of the procedures he now handles: asylum, residence, qualification recognition, driving licence exchange.","Gerson est arrivé en Espagne en tant qu'immigrant et a vécu personnellement chaque étape des démarches qu'il gère aujourd'hui : asile, résidence, homologation de diplômes, échange de permis de conduire."],
+    "Hoy es gestor administrativo colegiado del Ilustre Colegio de Gestores Administrativos de Sevilla, uniendo el conocimiento técnico-legal con la empatía de quien ha estado del otro lado.":["Today he is a chartered administrative agent of the Seville Association of Administrative Agents, combining technical-legal knowledge with the empathy of someone who's been on the other side.","Aujourd'hui, il est gestionnaire administratif agréé de l'Ordre des gestionnaires administratifs de Séville, alliant la connaissance technico-juridique à l'empathie de quelqu'un qui a été de l'autre côté."],
+    "Licenciado en Administración · Máster en Gestión Administrativa":["Degree in Administration · Master's in Administrative Management","Licence en Administration · Master en Gestion administrative"],
+    "Experiencia real":["Real experience","Expérience réelle"],
+    "Hemos vivido el proceso migratorio. Entendemos lo que significa cada trámite, no solo lo que dice la ley.":["We've lived the migration process. We understand what each procedure means, not just what the law says.","Nous avons vécu le processus migratoire. Nous comprenons ce que signifie chaque démarche, pas seulement ce que dit la loi."],
+    "Transparencia":["Transparency","Transparence"],
+    "Precios cerrados y claridad total sobre qué incluye cada servicio. Sin sorpresas.":["Fixed prices and total clarity on what each service includes. No surprises.","Prix fixes et clarté totale sur ce qu'inclut chaque service. Sans surprises."],
+    "Respaldo profesional":["Professional backing","Soutien professionnel"],
+    "Gestoría colegiada con formación especializada en extranjería y nacionalidad española.":["Chartered agency with specialised training in immigration and Spanish nationality.","Cabinet agréé avec une formation spécialisée en immigration et nationalité espagnole."],
+    "Equipo":["Team","Équipe"],
+    "Detrás de GOgestión hay un equipo de especialistas que acompaña cada expediente de principio a fin.":["Behind GOgestión there's a team of specialists that accompanies every case from start to finish.","Derrière GOgestión, une équipe de spécialistes accompagne chaque dossier du début à la fin."],
+    "Economista":["Economist","Économiste"],
+    "Especialista en gestión de trámites de extranjería.":["Specialist in managing immigration procedures.","Spécialiste de la gestion des démarches d'immigration."],
+    "Trámites de tráfico":["Traffic procedures","Démarches de circulation"],
+    "Especialista en procedimientos con vehículos y normativa vial.":["Specialist in vehicle procedures and road regulations.","Spécialiste des procédures véhicules et de la réglementation routière."],
+    "Gestión administrativa":["Administrative management","Gestion administrative"],
+    "Gestión administrativa y atención al cliente.":["Administrative management and customer service.","Gestion administrative et service client."],
+    "En qué te ayudamos":["How we help you","Comment nous vous aidons"],
+    "Trámites de extranjería, migración y nacionalidad, con precio cerrado cuando el caso lo permite. La consulta se descuenta si después realizas el trámite con nosotros.":["Immigration, migration and nationality procedures, with a fixed price when the case allows. The consultation is deducted if you then complete the procedure with us.","Démarches d'immigration, de migration et de nationalité, à prix fixe lorsque le cas le permet. La consultation est déduite si vous réalisez ensuite la démarche avec nous."],
+    "Consulta inicial":["Initial consultation","Consultation initiale"],
+    "Revisamos tu situación y te orientamos sobre el trámite que te corresponde. Presencial o por videollamada.":["We review your situation and guide you on the right procedure for you. In person or by video call.","Nous examinons votre situation et vous orientons vers la démarche qui vous convient. En personne ou par visioconférence."],
+    "· deducible del trámite":["· deducted from the procedure","· déduit de la démarche"],
+    "Pack Arraigo":["Arraigo pack","Pack Arraigo"],
+    "Social, socioformativo, familiar, de segunda oportunidad o por razones humanitarias.":["Social, socio-educational, family, second-chance or on humanitarian grounds.","Social, socio-éducatif, familial, de seconde chance ou pour raisons humanitaires."],
+    "· tasas incluidas":["· fees included","· taxes incluses"],
+    "Residencia familiar de español":["Family residence (Spanish citizen)","Résidence familiale d'un ressortissant espagnol"],
+    "Autorización para pareja, padres o hijos de ciudadanos españoles, desde España o desde origen.":["Authorisation for the partner, parents or children of Spanish citizens, from Spain or from the country of origin.","Autorisation pour le conjoint, les parents ou les enfants de citoyens espagnols, depuis l'Espagne ou le pays d'origine."],
+    "Nacionalidad por residencia":["Nationality by residence","Nationalité par résidence"],
+    "Preparación y presentación del expediente de nacionalidad española.":["Preparation and submission of the Spanish nationality application.","Préparation et dépôt du dossier de nationalité espagnole."],
+    "Canje de permiso de conducir":["Driving licence exchange","Échange de permis de conduire"],
+    "Si tu país tiene convenio con España. Tasas incluidas.":["If your country has an agreement with Spain. Fees included.","Si votre pays a un accord avec l'Espagne. Taxes incluses."],
+    "Pack estancias por estudios":["Study stay pack","Pack séjours pour études"],
+    "Desde localizar el centro y reunir la documentación hasta obtener tu tarjeta de estudiante.":["From finding the institution and gathering the documents to obtaining your student card.","De la recherche de l'établissement et la constitution du dossier jusqu'à l'obtention de votre carte d'étudiant."],
+    "¿No ves tu trámite (renovaciones, nómada digital, recursos, requerimientos…)? Lo atendemos también: escríbenos y, tras revisar tu caso, te indicamos honorarios y documentación exacta. Forma de pago habitual: 70 % al iniciar y 30 % al finalizar.":["Don't see your procedure (renewals, digital nomad, appeals, official requests…)? We handle those too: write to us and, after reviewing your case, we'll tell you the exact fees and documents. Usual payment: 70 % to start and 30 % on completion.","Vous ne voyez pas votre démarche (renouvellements, nomade numérique, recours, réquisitions…) ? Nous nous en occupons aussi : écrivez-nous et, après examen de votre cas, nous vous indiquerons les honoraires et documents exacts. Paiement habituel : 70 % au début et 30 % à la fin."],
+    "Siempre sabes qué viene después":["You always know what comes next","Vous savez toujours ce qui vient ensuite"],
+    "Un proceso ordenado reduce incertidumbre, evita errores y te permite seguir tu expediente sin perseguir respuestas.":["An orderly process reduces uncertainty, avoids mistakes and lets you follow your case without chasing answers.","Un processus ordonné réduit l'incertitude, évite les erreurs et vous permet de suivre votre dossier sans courir après les réponses."],
+    "Entendemos tu situación":["We understand your situation","Nous comprenons votre situation"],
+    "Revisamos tu caso, tus plazos y la documentación disponible. Si no conviene iniciar un trámite, también te lo decimos.":["We review your case, your deadlines and the available documents. If it's not advisable to start a procedure, we'll tell you that too.","Nous examinons votre cas, vos délais et les documents disponibles. S'il ne convient pas d'entamer une démarche, nous vous le disons aussi."],
+    "Preparamos el expediente":["We prepare the case file","Nous préparons le dossier"],
+    "Recibes una lista clara de documentos. Revisamos cada pieza y presentamos el expediente ante la administración.":["You receive a clear list of documents. We check every item and submit the file to the authorities.","Vous recevez une liste claire de documents. Nous vérifions chaque pièce et déposons le dossier auprès de l'administration."],
+    "Hacemos seguimiento":["We track progress","Nous assurons le suivi"],
+    "Consultas el estado desde el Área de Clientes y el equipo te acompaña ante novedades o requerimientos.":["You check the status from the Client Area and the team supports you with any updates or official requests.","Vous consultez l'état depuis l'Espace client et l'équipe vous accompagne en cas de nouveautés ou de réquisitions."],
+    "Te acompañamos hasta el cierre":["We support you until the end","Nous vous accompagnons jusqu'à la clôture"],
+    "Te explicamos la resolución y los siguientes pasos para completar correctamente el proceso.":["We explain the decision and the next steps to complete the process correctly.","Nous vous expliquons la décision et les étapes suivantes pour mener à bien le processus."],
+    "Nuevo · 24/7":["New · 24/7","Nouveau · 24/7"],
+    "Habla con Faby y sal de dudas al instante":["Chat with Faby and clear your doubts instantly","Discutez avec Faby et levez vos doutes à l'instant"],
+    "¿No sabes qué trámite te toca ni por dónde empezar? Faby, nuestra asistente virtual, te orienta a cualquier hora, te dice el precio cuando está establecido y te ayuda a reservar tu cita.":["Not sure which procedure applies to you or where to start? Faby, our virtual assistant, guides you at any time, tells you the price when it's set and helps you book your appointment.","Vous ne savez pas quelle démarche vous concerne ni par où commencer ? Faby, notre assistante virtuelle, vous oriente à toute heure, vous indique le prix lorsqu'il est établi et vous aide à réserver votre rendez-vous."],
+    "Identifica tu trámite (arraigo, nacionalidad, reagrupación…).":["Identifies your procedure (arraigo, nationality, family reunification…).","Identifie votre démarche (arraigo, nationalité, regroupement familial…)."],
+    "Te da documentación orientativa y precios claros.":["Gives you guidance on documents and clear prices.","Vous donne une documentation indicative et des prix clairs."],
+    "Nunca inventa: si tu caso necesita estudio, te lo dice y lo revisa el equipo.":["Never makes things up: if your case needs review, it says so and the team looks into it.","N'invente jamais : si votre cas nécessite une étude, il vous le dit et l'équipe l'examine."],
+    "Hablar con Faby →":["Chat with Faby →","Parler avec Faby →"],
+    "Hola, soy Faby. ¿En qué trámite te puedo orientar?":["Hi, I'm Faby. Which procedure can I help you with?","Bonjour, je suis Faby. Sur quelle démarche puis-je vous orienter ?"],
+    "Llevo 2 años en España, ¿qué puedo hacer?":["I've been in Spain for 2 years, what can I do?","Je suis en Espagne depuis 2 ans, que puis-je faire ?"],
+    "Por el tiempo que llevas podrías encajar en un arraigo. Cada caso es distinto. ¿Qué nacionalidad tienes y cuál es tu situación ahora?":["With the time you've been here you might qualify for an arraigo. Every case is different. What's your nationality and your current situation?","Vu le temps que vous êtes ici, vous pourriez être éligible à un arraigo. Chaque cas est différent. Quelle est votre nationalité et votre situation actuelle ?"],
+    "Asistente con tecnología de":["Assistant powered by","Assistant propulsé par"],
+    "Por qué GOgestión":["Why GOgestión","Pourquoi GOgestión"],
+    "Seriedad de gestoría colegiada, trato cercano":["The rigour of a chartered agency, with a personal touch","Le sérieux d'un cabinet agréé, avec un contact humain"],
+    "Gestor administrativo colegiado nº 1345 del Colegio de Gestores de Sevilla. Responsabilidad y garantías.":["Chartered administrative agent nº 1345 of the Seville Association of Administrative Agents. Responsibility and guarantees.","Gestionnaire administratif agréé nº 1345 de l'Ordre des gestionnaires de Séville. Responsabilité et garanties."],
+    "Lo hemos vivido":["We've lived it","Nous l'avons vécu"],
+    "Entendemos por lo que pasas porque conocemos el proceso de cerca. Te acompañamos en cada paso.":["We understand what you're going through because we know the process closely. We're with you every step.","Nous comprenons ce que vous traversez car nous connaissons le processus de près. Nous vous accompagnons à chaque étape."],
+    "Sin promesas vacías":["No empty promises","Sans promesses vides"],
+    "No garantizamos resultados imposibles. Revisamos tu caso y te decimos la verdad, con opciones reales.":["We don't guarantee impossible results. We review your case and tell you the truth, with real options.","Nous ne garantissons pas de résultats impossibles. Nous examinons votre cas et vous disons la vérité, avec des options réelles."],
+    "Miembro del Colegio Oficial de Gestores Administrativos de Sevilla.":["Member of the Official Association of Administrative Agents of Seville.","Membre de l'Ordre officiel des gestionnaires administratifs de Séville."],
+    "Una acreditación visible para reforzar la confianza desde el primer contacto.":["A visible accreditation to reinforce trust from the very first contact.","Une accréditation visible pour renforcer la confiance dès le premier contact."],
+    "Ver institución →":["View institution →","Voir l'institution →"],
+    "Preguntas frecuentes":["FAQ","Questions fréquentes"],
+    "Dudas habituales":["Common questions","Questions courantes"],
+    "Y si tienes otra, pregúntale a Faby o reserva tu consulta.":["And if you have another, ask Faby or book your consultation.","Et si vous en avez une autre, demandez à Faby ou réservez votre consultation."],
+    "¿Cuánto cuesta la primera consulta?":["How much does the first consultation cost?","Combien coûte la première consultation ?"],
+    "La consulta cuesta 40 € y puede ser presencial en Sevilla o por videollamada. Si luego realizas el trámite con nosotros, esos 40 € se descuentan de los honorarios.":["The consultation costs 40 € and can be in person in Seville or by video call. If you then complete the procedure with us, those 40 € are deducted from the fees.","La consultation coûte 40 € et peut se faire en personne à Séville ou par visioconférence. Si vous réalisez ensuite la démarche avec nous, ces 40 € sont déduits des honoraires."],
+    "¿Atienden solo en Sevilla?":["Do you only serve Seville?","Ne recevez-vous qu'à Séville ?"],
+    "Atendemos presencialmente en nuestro despacho de Sevilla y también por videollamada, estés donde estés.":["We serve you in person at our Seville office and also by video call, wherever you are.","Nous vous recevons en personne à notre cabinet de Séville et aussi par visioconférence, où que vous soyez."],
+    "¿Cómo se paga un trámite?":["How is a procedure paid for?","Comment paie-t-on une démarche ?"],
+    "Como norma general, el 70 % al iniciar el procedimiento y el 30 % restante al finalizarlo.":["As a general rule, 70 % when the procedure begins and the remaining 30 % on completion.","En règle générale, 70 % au début de la procédure et les 30 % restants à la fin."],
+    "¿Me garantizan que aprueben mi trámite?":["Do you guarantee my procedure will be approved?","Garantissez-vous l'approbation de ma démarche ?"],
+    "No. Ninguna gestoría seria garantiza un resultado. Revisamos tu caso con honestidad y te decimos las opciones reales que tienes.":["No. No serious agency guarantees a result. We review your case honestly and tell you the real options you have.","Non. Aucun cabinet sérieux ne garantit un résultat. Nous examinons votre cas honnêtement et vous indiquons les options réelles dont vous disposez."],
+    "No sé qué trámite necesito, ¿me pueden orientar?":["I don't know which procedure I need, can you guide me?","Je ne sais pas de quelle démarche j'ai besoin, pouvez-vous m'orienter ?"],
+    "Claro. Cuéntale tu situación a Faby (nuestra asistente) o reserva la consulta: identificamos tu caso y te indicamos el trámite, la documentación y el precio cuando está establecido.":["Of course. Tell Faby (our assistant) your situation or book the consultation: we identify your case and tell you the procedure, the documents and the price when it's set.","Bien sûr. Expliquez votre situation à Faby (notre assistante) ou réservez la consultation : nous identifions votre cas et vous indiquons la démarche, les documents et le prix lorsqu'il est établi."],
+    "Contacto":["Contact","Contact"],
+    "Reserva tu cita":["Book your appointment","Réservez votre rendez-vous"],
+    "Presencial en nuestro despacho de Sevilla o por videollamada. La consulta cuesta 40 € y se descuenta si luego realizas el trámite con nosotros.":["In person at our Seville office or by video call. The consultation costs 40 € and is deducted if you then complete the procedure with us.","En personne à notre cabinet de Séville ou par visioconférence. La consultation coûte 40 € et est déduite si vous réalisez ensuite la démarche avec nous."],
+    "Escríbenos por WhatsApp":["Message us on WhatsApp","Écrivez-nous sur WhatsApp"],
+    "Lun–Jue 10:00–14:00 y 17:00–20:00 · Vie 10:00–15:00":["Mon–Thu 10:00–14:00 & 17:00–20:00 · Fri 10:00–15:00","Lun–Jeu 10:00–14:00 et 17:00–20:00 · Ven 10:00–15:00"],
+    "¿Prefieres empezar por Faby?":["Prefer to start with Faby?","Vous préférez commencer avec Faby ?"],
+    "Cuéntale tu situación y te orienta al instante, sin compromiso.":["Tell her your situation and she guides you instantly, no obligation.","Expliquez-lui votre situation et elle vous oriente aussitôt, sans engagement."],
+    "Gestoría Administrativa · Extranjería, migración y nacionalidad · Sevilla":["Administrative Agency · Immigration, migration and nationality · Seville","Cabinet administratif · Immigration, migration et nationalité · Séville"],
+    "Política de Privacidad y Cookies":["Privacy & Cookies Policy","Politique de confidentialité et cookies"],
+    "Demo preparado por botnexo para GOgestión. Contenido orientativo; el asistente no sustituye el asesoramiento jurídico individual.":["Demo prepared by botnexo for GOgestión. Indicative content; the assistant does not replace individual legal advice.","Démo préparée par botnexo pour GOgestión. Contenu indicatif ; l'assistant ne remplace pas un conseil juridique individuel."],
+    "Usamos almacenamiento esencial para recordar tus preferencias.":["We use essential storage to remember your preferences.","Nous utilisons un stockage essentiel pour mémoriser vos préférences."],
+    "Más información":["More info","Plus d'infos"],
+    "Aceptar":["Accept","Accepter"]
+  };
+  var langs=['es','en','fr'];
+  function norm(s){ return s.replace(/ /g,' ').replace(/\s+/g,' ').trim(); }
+  var items=[];
+  function collect(){
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+      var p=n.parentNode; if(!p)return NodeFilter.FILTER_REJECT;
+      var t=p.nodeName; if(t==='SCRIPT'||t==='STYLE'||t==='NOSCRIPT')return NodeFilter.FILTER_REJECT;
+      if(p.closest&&p.closest('.lang-sel'))return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }});
+    var n; while(n=w.nextNode()){ var k=norm(n.nodeValue); if(T[k]) items.push({node:n,orig:n.nodeValue,key:k}); }
+  }
+  function apply(lang){
+    var i=langs.indexOf(lang); if(i<0){i=0;lang='es';}
+    items.forEach(function(it){
+      if(lang==='es'){ it.node.nodeValue=it.orig; return; }
+      var tr=T[it.key] && T[it.key][i-1];
+      if(tr){ var lead=it.orig.match(/^\s*/)[0], trail=it.orig.match(/\s*$/)[0]; it.node.nodeValue=lead+tr+trail; }
+    });
+    document.documentElement.lang=lang;
+    var btns=document.querySelectorAll('.lang-sel button');
+    for(var b=0;b<btns.length;b++){ btns[b].classList.toggle('on', btns[b].getAttribute('data-l')===lang); }
+    try{ localStorage.setItem('gog-lang',lang); }catch(e){}
+  }
+  function init(){
+    collect();
+    var btns=document.querySelectorAll('.lang-sel button');
+    for(var b=0;b<btns.length;b++){ (function(bt){ bt.addEventListener('click',function(){ apply(bt.getAttribute('data-l')); }); })(btns[b]); }
+    var saved='es'; try{ saved=localStorage.getItem('gog-lang')||'es'; }catch(e){}
+    apply(saved);
+  }
+  if(document.readyState!=='loading')init(); else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
 
 <!-- Asistente virtual (widget) -->
 <!-- Asistente unificado Vai (Velai) — la marca de Faby (GOgestión) se sirve desde el panel. Reemplaza el widget.js propio. -->

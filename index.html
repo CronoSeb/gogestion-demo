@@ -170,6 +170,29 @@
   .wa-float:hover{transform:scale(1.06)}
   .wa-float svg{width:30px;height:30px;fill:#fff}
   @media(max-width:680px){.wa-float{width:52px;height:52px;left:16px;bottom:16px}}
+  .wa-float{border:0;padding:0;cursor:pointer}
+  /* Popup "¿Empezamos con Faby?" del botón de WhatsApp */
+  .wa-choice{position:fixed;left:22px;bottom:88px;z-index:61;width:284px;max-width:calc(100vw - 44px);background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:16px;padding:18px 18px 16px;box-shadow:var(--shadow);display:none}
+  .wa-choice.open{display:block}
+  .wa-choice strong{display:block;font-size:15px;margin-bottom:6px}
+  .wa-choice>p{margin:0 0 14px;font-size:13px;color:var(--muted);line-height:1.5}
+  .wa-actions{display:flex;flex-direction:column;gap:8px}
+  .wa-ask{background:var(--wine);color:#fff;border:0;border-radius:10px;padding:11px;font:600 14px var(--sans);cursor:pointer;transition:transform .2s,background .2s}
+  .wa-ask:hover{background:var(--wine-d);transform:translateY(-2px)}
+  .wa-direct{display:block;text-align:center;background:#25D366;color:#fff;border-radius:10px;padding:11px;font:600 14px var(--sans);text-decoration:none;transition:transform .2s}
+  .wa-direct:hover{transform:translateY(-2px)}
+  .wa-x{position:absolute;top:8px;right:11px;background:transparent;border:0;font-size:20px;line-height:1;color:var(--muted);cursor:pointer}
+  @media(max-width:680px){.wa-choice{left:16px;bottom:78px}}
+  /* Efecto hover unificado (como las tarjetas de Servicios): elevar + acento vino, también en fotos */
+  .tc,.institution,#faq details[style],.why .c,.hero-card{transition:transform .28s ease,border-color .28s ease,border-top-color .28s ease,box-shadow .28s ease}
+  .tc:hover,.institution:hover,#faq details[style]:hover,.hero-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(23,25,34,.13)}
+  .tc:hover,.institution:hover,#faq details[style]:hover{border-color:rgba(139,20,48,.35)}
+  .why .c:hover{transform:translateY(-5px);border-top-color:var(--wine)}
+  #nosotros .about img,#nosotros .tc img,.institution img{transition:transform .3s ease,box-shadow .3s ease}
+  #nosotros .about img:hover,.institution img:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 22px 50px rgba(139,20,48,.22)}
+  .tc:hover img{transform:scale(1.04)}
+  .cta{transition:transform .2s,background .2s}.cta:hover{transform:translateY(-2px)}
+  .step{transition:transform .25s ease}.step:hover{transform:translateX(6px)}.step:hover h3{color:var(--wine)}
   /* Selector de idioma ES/EN/FR */
   .lang-sel{display:inline-flex;gap:2px;border:1px solid var(--border);border-radius:999px;padding:2px}
   .lang-sel button{background:transparent;border:0;cursor:pointer;font:600 12.5px var(--sans);color:var(--muted);padding:5px 9px;border-radius:999px;line-height:1}
@@ -189,6 +212,20 @@
   :root[data-theme="dark"] .chatmock .bot{background:#34303c;color:var(--ink)}
   :root[data-theme="dark"] .logo-light{display:none}
   :root[data-theme="dark"] .logo-dark{display:inline}
+  /* Oscuro: secciones que tenían fondo blanco fijo */
+  :root[data-theme="dark"] .trust{background:var(--cream2);border-color:var(--border)}
+  :root[data-theme="dark"] .trust .t{border-color:var(--border)}
+  :root[data-theme="dark"] #servicios{background:var(--cream2)}
+  :root[data-theme="dark"] .svc,:root[data-theme="dark"] .svc.alt{background:var(--surface);border-color:var(--border)}
+  :root[data-theme="dark"] .svc::after{color:var(--muted)}
+  :root[data-theme="dark"] .process{background:var(--paper)}
+  :root[data-theme="dark"] #confianza{background:var(--cream2)}
+  :root[data-theme="dark"] .institution{background:var(--surface);border-color:var(--border)}
+  :root[data-theme="dark"] .btn-s{background:transparent;border-color:var(--border);color:var(--ink)}
+  :root[data-theme="dark"] .btn-s:hover{border-color:var(--ink)}
+  :root[data-theme="dark"] .nav nav a{color:#cbc6d1}
+  :root[data-theme="dark"] .nav nav a:hover{color:#fff}
+  :root[data-theme="dark"] .hero-proof{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -462,10 +499,33 @@
 
 <script>(function(){var v=document.getElementById('brand-video'),b=document.getElementById('sound-toggle');if(!v||!b)return;b.addEventListener('click',function(){v.muted=!v.muted;b.querySelector('.sound-off').hidden=!v.muted;b.querySelector('.sound-on').hidden=v.muted;b.setAttribute('aria-label',v.muted?'Activar sonido':'Silenciar video');if(v.paused)v.play().catch(function(){})});})();</script>
 
-<!-- WhatsApp directo (Faby sigue siendo la opción principal, abajo a la derecha) -->
-<a class="wa-float" href="https://wa.me/34634167405?text=Hola%2C%20vengo%20de%20la%20web%20de%20GOgesti%C3%B3n%20y%20quiero%20informaci%C3%B3n%20sobre%20un%20tr%C3%A1mite%20de%20extranjer%C3%ADa." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="Escríbenos por WhatsApp">
+<!-- WhatsApp con invitación a Faby primero (Faby es la opción principal, abajo-derecha) -->
+<button class="wa-float" id="waFab" type="button" aria-label="Contacto por WhatsApp" aria-expanded="false">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg>
-</a>
+</button>
+<div class="wa-choice" id="waChoice" role="dialog" aria-label="Cómo prefieres empezar">
+  <button class="wa-x" id="waChoiceClose" type="button" aria-label="Cerrar">×</button>
+  <strong>¿Empezamos con Faby?</strong>
+  <p>Faby te orienta al instante y gratis. O, si prefieres, escríbenos directo por WhatsApp.</p>
+  <div class="wa-actions">
+    <button class="wa-ask" id="waAskFaby" type="button">Sí, hablar con Faby</button>
+    <a class="wa-direct" id="waDirect" href="https://wa.me/34634167405?text=Hola%2C%20vengo%20de%20la%20web%20de%20GOgesti%C3%B3n%20y%20quiero%20informaci%C3%B3n%20sobre%20un%20tr%C3%A1mite%20de%20extranjer%C3%ADa." target="_blank" rel="noopener">Ir directo a WhatsApp</a>
+  </div>
+</div>
+
+<!-- WhatsApp: popup que invita a hablar con Faby primero -->
+<script>
+(function(){
+  var fab=document.getElementById('waFab'), box=document.getElementById('waChoice');
+  if(!fab||!box)return;
+  function close(){box.classList.remove('open');fab.setAttribute('aria-expanded','false');}
+  fab.addEventListener('click',function(e){e.stopPropagation();var o=box.classList.toggle('open');fab.setAttribute('aria-expanded',String(o));});
+  var x=document.getElementById('waChoiceClose'); if(x)x.addEventListener('click',close);
+  var ask=document.getElementById('waAskFaby'); if(ask)ask.addEventListener('click',function(){close();if(window.VaiChat&&window.VaiChat.open)window.VaiChat.open();});
+  var dir=document.getElementById('waDirect'); if(dir)dir.addEventListener('click',close);
+  document.addEventListener('click',function(e){ if(box.classList.contains('open')&&!box.contains(e.target)&&!fab.contains(e.target))close(); });
+})();
+</script>
 
 <!-- Tema claro/oscuro (claro por defecto) -->
 <script>
@@ -593,6 +653,10 @@
     "Demo preparado por botnexo para GOgestión. Contenido orientativo; el asistente no sustituye el asesoramiento jurídico individual.":["Demo prepared by botnexo for GOgestión. Indicative content; the assistant does not replace individual legal advice.","Démo préparée par botnexo pour GOgestión. Contenu indicatif ; l'assistant ne remplace pas un conseil juridique individuel."],
     "Usamos almacenamiento esencial para recordar tus preferencias.":["We use essential storage to remember your preferences.","Nous utilisons un stockage essentiel pour mémoriser vos préférences."],
     "Más información":["More info","Plus d'infos"],
+    "¿Empezamos con Faby?":["Start with Faby?","On commence avec Faby ?"],
+    "Faby te orienta al instante y gratis. O, si prefieres, escríbenos directo por WhatsApp.":["Faby guides you instantly and for free. Or, if you prefer, message us directly on WhatsApp.","Faby vous oriente à l'instant et gratuitement. Ou, si vous préférez, écrivez-nous directement sur WhatsApp."],
+    "Sí, hablar con Faby":["Yes, chat with Faby","Oui, parler avec Faby"],
+    "Ir directo a WhatsApp":["Go directly to WhatsApp","Aller directement sur WhatsApp"],
     "Aceptar":["Accept","Accepter"]
   };
   var langs=['es','en','fr'];

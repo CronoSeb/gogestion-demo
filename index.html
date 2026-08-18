@@ -176,13 +176,26 @@
   .lang-sel button:hover{color:var(--wine)}
   .lang-sel button.on{background:var(--wine);color:#fff}
   @media(max-width:680px){.lang-sel{order:3}}
+  /* Tema oscuro (suave y elegante; claro por defecto, mismas fuentes) */
+  .theme-btn{background:transparent;border:1px solid var(--border);color:var(--ink);width:36px;height:36px;border-radius:999px;cursor:pointer;font-size:15px;line-height:1;display:grid;place-items:center;padding:0}
+  .theme-btn:hover{border-color:var(--wine)}
+  .logo-dark{display:none}
+  :root[data-theme="dark"]{color-scheme:dark;--paper:#1c1a20;--cream2:#232028;--surface:#26222c;--ink:#ece8e3;--muted:#a8a2ac;--border:#38333f;--border2:#38333f;--wine:#d96079;--wine-d:#c44b64;--gold:#d99a5c;--shadow:0 16px 45px rgba(0,0,0,.5)}
+  :root[data-theme="dark"] body{background:var(--paper)}
+  :root[data-theme="dark"] header.nav{background:rgba(28,26,32,.92)}
+  :root[data-theme="dark"] #faq{background:var(--paper)}
+  :root[data-theme="dark"] .btn-s{color:var(--ink);border-color:var(--border)}
+  :root[data-theme="dark"] .chatmock{background:#2a2631}
+  :root[data-theme="dark"] .chatmock .bot{background:#34303c;color:var(--ink)}
+  :root[data-theme="dark"] .logo-light{display:none}
+  :root[data-theme="dark"] .logo-dark{display:inline}
 </style>
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="GOgestión, inicio"><img src="images/logo.png" alt="GOgestión"></a>
+    <a class="logo" href="#top" aria-label="GOgestión, inicio"><img class="logo-light" src="images/logo.png" alt="GOgestión"><img class="logo-dark" src="images/logo-white.png" alt="GOgestión"></a>
     <nav>
       <a class="hide" href="#nosotros">Sobre nosotros</a>
       <a class="hide" href="#servicios">Servicios</a>
@@ -194,6 +207,7 @@
         <button type="button" data-l="en">EN</button>
         <button type="button" data-l="fr">FR</button>
       </div>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema" title="Tema claro / oscuro">🌙</button>
       <a class="cta" href="#contacto">Reservar cita</a>
     </nav>
   </div>
@@ -452,6 +466,17 @@
 <a class="wa-float" href="https://wa.me/34634167405?text=Hola%2C%20vengo%20de%20la%20web%20de%20GOgesti%C3%B3n%20y%20quiero%20informaci%C3%B3n%20sobre%20un%20tr%C3%A1mite%20de%20extranjer%C3%ADa." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg>
 </a>
+
+<!-- Tema claro/oscuro (claro por defecto) -->
+<script>
+(function(){
+  var KEY='gog-theme', root=document.documentElement, btn=document.getElementById('themeBtn');
+  function set(t){ if(t==='dark'){root.setAttribute('data-theme','dark');}else{root.removeAttribute('data-theme');t='light';} if(btn)btn.textContent=(t==='dark'?'☀️':'🌙'); try{localStorage.setItem(KEY,t);}catch(e){} }
+  var saved='light'; try{saved=localStorage.getItem(KEY)||'light';}catch(e){}
+  set(saved);
+  if(btn)btn.addEventListener('click',function(){ set(root.getAttribute('data-theme')==='dark'?'light':'dark'); });
+})();
+</script>
 
 <!-- i18n ES / EN / FR — traducción por nodos de texto (no altera la estructura) -->
 <script>
